@@ -1,5 +1,3 @@
-import {Main} from "./Day1/Day1.js";
+import {Main} from "./Day2/Day2-2.js";
 
-
-
-Main();
+console.log(Main());
