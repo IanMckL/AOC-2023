@@ -18,7 +18,7 @@ export const Main = () => {
           x: null,
           y: null,
         };
-          let atEndOfPipe = false;
+        let atEndOfPipe = false;
 
         while (!atEndOfPipe) {
           let x = currentCoordinate.x;
@@ -26,22 +26,21 @@ export const Main = () => {
           let currentSymbol = lines[y][x];
 
           if (currentSymbol === 'S' && distanceFromStart > 0) {
-            console.log('Loop complete');
             atEndOfPipe = true;
             continue;
           }
 
           //Go north?
           if (
-            canGoDirection(
+            availableDirections(
               x,
               y - 1,
               ['|', 'F', '7', 'S'],
               currentSymbol,
               lines,
             ) &&
-            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x, y - 1)
-              && symbolCanGoDirection(['|', 'J', 'L', 'S'], lines[y][x])
+            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x, y - 1) &&
+            symbolCanGoDirection(['|', 'J', 'L', 'S'], lines[y][x])
           ) {
             currentCoordinate.y = y - 1;
             lastCoordinate.x = x;
@@ -52,54 +51,52 @@ export const Main = () => {
           }
           //Go south?
           if (
-            canGoDirection(
+            availableDirections(
               x,
               y + 1,
               ['|', 'L', 'J', 'S'],
               currentSymbol,
               lines,
             ) &&
-            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x, y + 1)
-              && symbolCanGoDirection(['|', 'F', '7', 'S'], lines[y][x])
+            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x, y + 1) &&
+            symbolCanGoDirection(['|', 'F', '7', 'S'], lines[y][x])
           ) {
             currentCoordinate.y = y + 1;
             lastCoordinate.x = x;
             lastCoordinate.y = y;
             distanceFromStart++;
-            console.log('Going south');
             continue;
           }
           //Go east?
           if (
-            canGoDirection(
+            availableDirections(
               x + 1,
               y,
               ['-', '7', 'J', 'S'],
               currentSymbol,
               lines,
             ) &&
-            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x + 1, y)
-              && symbolCanGoDirection(['-', 'L', 'F', 'S'], lines[y][x])
+            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x + 1, y) &&
+            symbolCanGoDirection(['-', 'L', 'F', 'S'], lines[y][x])
           ) {
             lastCoordinate.x = x;
             lastCoordinate.y = y;
-              currentCoordinate.x = x + 1;
+            currentCoordinate.x = x + 1;
 
-              distanceFromStart++;
-            console.log('Going east');
+            distanceFromStart++;
             continue;
           }
           //Go west?
           if (
-            canGoDirection(
+            availableDirections(
               x - 1,
               y,
-              ['-', 'F', 'L' ],
+              ['-', 'F', 'L'],
               currentSymbol,
               lines,
             ) &&
-            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x - 1, y)
-              && symbolCanGoDirection(['-', '7', 'J', 'S'], lines[y][x])
+            shouldGoDirection(lastCoordinate.x, lastCoordinate.y, x - 1, y) &&
+            symbolCanGoDirection(['-', '7', 'J', 'S'], lines[y][x])
           ) {
             currentCoordinate.x = x - 1;
             lastCoordinate.x = x;
@@ -108,17 +105,15 @@ export const Main = () => {
             continue;
           }
 
-           atEndOfPipe = true;
-
+          atEndOfPipe = true;
         }
-         let roundedDown = Math.ceil(distanceFromStart / 2);
-            console.log(roundedDown);
+        let roundedDown = Math.ceil(distanceFromStart / 2);
       }
     }
   }
 };
 
-const canGoDirection = (
+const availableDirections = (
   destinationx: number,
   destinationy: number,
   currentSymbols: string[],
@@ -132,12 +127,10 @@ const canGoDirection = (
     destinationy < 0 ||
     destinationy > lines.length
   ) {
-      console.log("Out of bounds");
     return false;
   }
   //check if destination is allowed according to current symbol
   if (currentSymbols.includes(lines[destinationy][destinationx])) {
-      console.log("Allowed");
     return true;
   }
 };
@@ -149,14 +142,12 @@ const shouldGoDirection = (
   destinationY: number,
 ): boolean => {
   //if last coordinate is same as the destination, we should not go there.
-  if (lastX === destinationX && lastY === destinationY) {
-      console.log("I was here before");
-    return false;
-  }
-  return true;
+  return !(lastX === destinationX && lastY === destinationY);
 };
 
-
-const symbolCanGoDirection = (acceptableSymbols: string[], currentSymbol: string) => {
-    return acceptableSymbols.includes(currentSymbol);
-}
+const symbolCanGoDirection = (
+  acceptableSymbols: string[],
+  currentSymbol: string,
+) => {
+  return acceptableSymbols.includes(currentSymbol);
+};
