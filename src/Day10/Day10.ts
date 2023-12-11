@@ -107,6 +107,7 @@ export const Main = () => {
           atEndOfPipe = true;
         }
         let roundedDown = Math.ceil(distanceFromStart / 2);
+        console.log(roundedDown);
       }
     }
   }
