@@ -46,7 +46,6 @@ export const Main = () => {
             lastCoordinate.x = x;
             lastCoordinate.y = y;
             distanceFromStart++;
-            console.log('Going north');
             continue;
           }
           //Go south?
