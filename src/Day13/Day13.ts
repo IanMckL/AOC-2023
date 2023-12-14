@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 
 export const Main = () => {
+  const start = performance.now();
   //Load input
   const file = readFileSync('src/Day13/input.txt', 'utf8');
 
@@ -13,19 +14,20 @@ export const Main = () => {
     let rowsToLeft = columnSearch(parsedLines[i]);
     let rowsAbove = rowSearch(parsedLines[i]);
 
-    console.log('Rows to left: ' + rowsToLeft);
-    console.log('Rows above: ' + rowsAbove);
     totalRowsToLeft += rowsToLeft;
     totalRowsAbove += rowsAbove;
-
   }
+  let total = totalRowsAbove * 100 + totalRowsToLeft;
 
-  console.log('Total rows to left: ' + totalRowsToLeft);
-  console.log('Total rows above: ' + totalRowsAbove);
-  let total = (totalRowsAbove * 100) + totalRowsToLeft;
+  //Print the result
+  console.log(total);
 
-  console.log('Total: ' + total);
-
+  //6.09 milliseconds to complete
+  console.log(
+    'Solution took ' +
+      (performance.now() - start).toFixed(2) +
+      ' milliseconds to complete.',
+  );
 };
 
 const splitBlocksOnSpace = (input: string): string[][] => {
@@ -46,7 +48,6 @@ const splitBlocksOnSpace = (input: string): string[][] => {
 };
 
 const columnSearch = (input: string[]) => {
-
   //Initiate rowsAbove and rowsBelow
   let rowsToLeft = 0;
   //Iterate through every two columns. If the columns match, get the number of columns to the right
@@ -65,8 +66,6 @@ const columnSearch = (input: string[]) => {
 
     //Test if the columns match
     let matchFound = firstColumn.join('') === secondColumn.join('');
-
-    let trueMatchFound = false;
 
     //If the columns match, bubble out and see if the other columns match
     if (matchFound) {
@@ -89,7 +88,6 @@ const columnSearch = (input: string[]) => {
 
         //If right column is empty, we're at the end of the line
         if (rightColumn.length === 0) {
-          trueMatchFound = true;
           break;
         }
 
@@ -151,3 +149,4 @@ const rowSearch = (input: string[]) => {
   }
   return rowsAbove;
 };
+
