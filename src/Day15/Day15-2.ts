@@ -1,6 +1,5 @@
 import { readFile, readFileSync } from 'fs';
 
-const boxes = new Map<number, string[]>();
 
 export const Main = () => {
   //Load file
@@ -10,6 +9,8 @@ export const Main = () => {
     .map((x) => x.split(','))
     .flat();
   let total: number = 0;
+  //Create map of boxes
+  const boxes = new Map<number, string[]>();
   //Iterate through each entry in the data
   for (let i = 0; i < file.length; i++) {
     let stringTotal = hashCalculator(file[i]);
