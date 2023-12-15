@@ -30,13 +30,13 @@ export const Main = () => {
         let lenses = boxes.get(boxNumber);
         let matchFound = false;
         //Iterate through each lens in the box
-        for (let i = 0; i < lenses.length; i++) {
+        for (let j = 0; j < lenses.length; j++) {
           //Get the lens idString by searching for the first space
-          let boxLensID = lenses[i].slice(0, lenses[i].indexOf(' '));
+          let boxLensID = lenses[j].slice(0, lenses[j].indexOf(' '));
           //If the lens ID matches the box lens ID, replace the lens
           if (boxLensID === lensIdString) {
             matchFound = true;
-            lenses[i] = lensString;
+            lenses[j] = lensString;
             break;
           }
         }
@@ -56,12 +56,12 @@ export const Main = () => {
         //If it does, remove the lens from the list of lenses, shifting the rest of the lenses down
         let lenses = boxes.get(boxNumber);
         //Iterate through each lens in the box
-        for (let i = 0; i < lenses.length; i++) {
+        for (let j = 0; j < lenses.length; j++) {
           //Get the lens idString by searching for the first space
-          let boxLensID = lenses[i].slice(0, lenses[i].indexOf(' '));
+          let boxLensID = lenses[j].slice(0, lenses[j].indexOf(' '));
           //If the lens ID matches the box lens ID, remove the lens
           if (boxLensID === lensIdString) {
-            lenses.splice(i, 1);
+            lenses.splice(j, 1);
             break;
           }
         }
@@ -72,17 +72,16 @@ export const Main = () => {
   let totalFocusingPower = 0;
 
   //Map through each box
-    boxes.forEach((lenses, boxNumber) => {
-
-        //Iterate through each lens in the box
-        for (let i = 0; i < lenses.length; i++) {
-            let lensPower =  (boxNumber + 1) * (i + 1) * (lenses[i].split(' ')[1] as unknown as number);
-            totalFocusingPower += lensPower;
-        }
-
-
-    })
-
+  boxes.forEach((lenses, boxNumber) => {
+    //Iterate through each lens in the box
+    for (let i = 0; i < lenses.length; i++) {
+      let lensPower =
+        (boxNumber + 1) *
+        (i + 1) *
+        (lenses[i].split(' ')[1] as unknown as number);
+      totalFocusingPower += lensPower;
+    }
+  });
 
   console.log(totalFocusingPower);
 };
