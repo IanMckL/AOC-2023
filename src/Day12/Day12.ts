@@ -29,7 +29,7 @@ const sumArray = (numberArray: number[]): number => {
   return total;
 };
 
-const memoize = <Args extends unknown[], Result>(
+export const memoize = <Args extends unknown[], Result>(
   fn: (...args: Args) => Result,
 ): ((...args: Args) => Result) => {
   const cache = new Map<string, Result>();
