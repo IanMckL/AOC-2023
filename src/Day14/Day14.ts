@@ -11,6 +11,10 @@ export const Main = () => {
   const transposed = transpose2DArray(file);
   const shiftedGrid = shiftItems(transposed);
   const calculatedDistance = calculateDistanceEnd(shiftedGrid);
+
+    //Print the result
+    console.log(calculatedDistance);
+    console.log(shiftedGrid);
 };
 
 const transpose2DArray = (array: string[]): string[][] => {
@@ -70,6 +74,4 @@ const calculateDistanceEnd = (grid: string[][]) => {
   console.log(totalDistance);
 
   return totalDistance;
-
-
-}
+};
