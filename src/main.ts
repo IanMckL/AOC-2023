@@ -1,3 +1,3 @@
-import {Main} from "./Day14/Day14.js";
+import {Main} from "./Day15/Day15.js";
 
 Main();
