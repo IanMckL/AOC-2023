@@ -83,14 +83,14 @@ const getAdjacentNumbers = (
     { x: coordinate.x + 1, y: coordinate.y + 1 },
   ];
   //Get the value of each adjacent coordinate
-  let adjacentValues = adjacent.map((x) => getCoodinateValue(grid, x));
+  let adjacentValues = adjacent.map((x) => getCoordinateValue(grid, x));
   //Filter out empty values
   adjacentValues = adjacentValues.filter((x) => x !== '');
 
   return adjacentValues;
 };
 
-const getCoodinateValue = (
+const getCoordinateValue = (
   grid: string[][],
   coordinate: Coordinate,
 ): string => {
