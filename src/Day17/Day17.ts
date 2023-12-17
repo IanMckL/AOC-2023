@@ -1,10 +1,6 @@
 import { makeGrid } from '../Day3/Day3.js';
 import { readFileSync } from 'fs';
 
-interface Coordinate {
-  x: number;
-  y: number;
-}
 
 export const Main = () => {
   const file = readFileSync('src/Day17/input.txt', 'utf8')
