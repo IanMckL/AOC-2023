@@ -14,7 +14,7 @@ export const Main = () => {
   console.log(solution);
 };
 
-const makeGrid = (input: string[]): string[][] => {
+export const makeGrid = (input: string[]): string[][] => {
   let grid: string[][] = [];
 
   for (let i = 0; i < input.length; i++) {
