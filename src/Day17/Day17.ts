@@ -14,25 +14,6 @@ export const Main = () => {
   dijkstraPathFind(grid);
 };
 
-const getAdjacentCoordinates = (
-  grid: string[][],
-  coordinate: Coordinate,
-): Coordinate[] => {
-  let adjacentCoordinates: Coordinate[] = [];
-  if (grid[coordinate.y - 1]) {
-    adjacentCoordinates.push({ x: coordinate.x, y: coordinate.y - 1 });
-  }
-  if (grid[coordinate.y + 1]) {
-    adjacentCoordinates.push({ x: coordinate.x, y: coordinate.y + 1 });
-  }
-  if (grid[coordinate.y][coordinate.x - 1]) {
-    adjacentCoordinates.push({ x: coordinate.x - 1, y: coordinate.y });
-  }
-  if (grid[coordinate.y][coordinate.x + 1]) {
-    adjacentCoordinates.push({ x: coordinate.x + 1, y: coordinate.y });
-  }
-  return adjacentCoordinates;
-};
 
 //Unoriginal Dijkstra's algorithm adapted from joeleisner's implementation. He's the smart one, not me. This is just
 //a copy pasta from his implementation, with some comments added by me to make it easier to understand.
