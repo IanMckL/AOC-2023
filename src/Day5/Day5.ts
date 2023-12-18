@@ -14,7 +14,6 @@ export const Main = () => {
 
     let locationValues = [];
     for(let i = 0; i < seeds.length; i++){
-        console.log("Seed: " + seeds[i]);
         let mappedTest= mapSourceToDestination( seedToSoilMap, parseInt(seeds[i]));
         let mappedFertilizer = mapSourceToDestination(soilToFertilizerMap, mappedTest);
         let mappedWater = mapSourceToDestination(fertilizerToWaterMap, mappedFertilizer);
@@ -24,7 +23,6 @@ export const Main = () => {
         let mappedLocation = mapSourceToDestination(humidityToLocationMap, mappedHumidity);
         locationValues.push(mappedLocation);
     }
-    console.log(locationValues)
 
     //Find the lowest location value
     let lowestLocation = Math.min(...locationValues);
