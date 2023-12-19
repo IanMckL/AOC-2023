@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import * as v8 from "v8";
+import * as v8 from 'v8';
 
 interface Coordinate {
   x: number;
@@ -7,15 +7,15 @@ interface Coordinate {
 }
 
 export const Main = () => {
-  let start = performance.now()
+  let start = performance.now();
   const file = readFileSync('src/Day18/input.txt', 'utf8')
     .split('\n')
     .filter((x) => x !== '');
 
-    let holeCount = findHoleCount(file);
-    let end = performance.now();
-    console.log(`Hole Count: ${holeCount}`);
-    console.log(`Time to complete: ${end - start}ms`);
+  let holeCount = findHoleCount(file);
+  let end = performance.now();
+  console.log(`Hole Count: ${holeCount}`);
+  console.log(`Time to complete: ${end - start}ms`);
 };
 
 const findHoleCount = (file: string[]) => {
@@ -37,7 +37,8 @@ const findHoleCount = (file: string[]) => {
         initalGrid[currentCoordinate.y].length <=
         currentCoordinate.x + distance
       ) {
-        let availableColumns = initalGrid[currentCoordinate.y].length - currentCoordinate.x -1;
+        let availableColumns =
+          initalGrid[currentCoordinate.y].length - currentCoordinate.x - 1;
         let neededColumns = distance - availableColumns;
         for (let j = 0; j < initalGrid.length; j++) {
           for (let k = 0; k < neededColumns; k++) {
@@ -83,7 +84,7 @@ const findHoleCount = (file: string[]) => {
         for (let j = 0; j < neededRows; j++) {
           initalGrid.unshift(new Array(initalGrid[0].length).fill('.'));
         }
-        currentCoordinate.y =  distance
+        currentCoordinate.y = distance;
       }
 
       let startingY = currentCoordinate.y - 1;
@@ -111,7 +112,7 @@ const findHoleCount = (file: string[]) => {
     }
   }
 
-  floodFillIterative(initalGrid, initalGrid[0].length - 134 , 50 );
+  floodFillIterative(initalGrid, initalGrid[0].length - 134, 50);
 
   let holeCount = 0;
   for (let i = 0; i < initalGrid.length; i++) {
@@ -123,10 +124,7 @@ const findHoleCount = (file: string[]) => {
   }
 
   return holeCount;
-
-
 };
-
 
 const floodFillIterative = (grid, x, y) => {
   let stack = [[x, y]];
@@ -134,7 +132,13 @@ const floodFillIterative = (grid, x, y) => {
   while (stack.length > 0) {
     let [cx, cy] = stack.pop();
 
-    if (cx < 0 || cx >= grid[0].length || cy < 0 || cy >= grid.length || grid[cy][cx] !== '.') {
+    if (
+      cx < 0 ||
+      cx >= grid[0].length ||
+      cy < 0 ||
+      cy >= grid.length ||
+      grid[cy][cx] !== '.'
+    ) {
       continue;
     }
 
