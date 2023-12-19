@@ -1,5 +1,4 @@
 import { readFileSync } from 'fs';
-import * as v8 from 'v8';
 
 interface Coordinate {
   x: number;
